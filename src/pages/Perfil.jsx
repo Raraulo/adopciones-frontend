@@ -4,6 +4,10 @@ import ModalUsuarios from "../components/ModalUsuarios";
 import ModalFacturas from "../components/ModalFacturas";
 import ModalSolicitudes from "../components/ModalSolicitudes";
 
+
+// 🔥 Importa la URL base del backend desde el .env
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Perfil({ esAdmin, usuario, token, onChangeView }) {
   const [adopciones, setAdopciones] = useState([]);
   const [facturas, setFacturas] = useState([]);
@@ -40,10 +44,10 @@ export default function Perfil({ esAdmin, usuario, token, onChangeView }) {
           setLoading(false); // Admin no necesita cargar adopciones/facturas
         } else {
           const [resAdopciones, resFacturas] = await Promise.all([
-            axios.get(`http://localhost:4000/api/solicitudes/mis-solicitudes`, {
+            axios.get(`${API_URL}/api/solicitudes/mis-solicitudes`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            axios.get(`http://localhost:4000/api/facturas/mis-facturas`, {
+            axios.get(`${API_URL}/api/facturas/mis-facturas`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
           ]);
@@ -64,7 +68,7 @@ export default function Perfil({ esAdmin, usuario, token, onChangeView }) {
   const guardarCambiosUsuario = async () => {
     try {
       await axios.put(
-        `http://localhost:4000/api/users/${usuario.id}`,
+        `${API_URL}/api/users/${usuario.id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -82,7 +86,7 @@ export default function Perfil({ esAdmin, usuario, token, onChangeView }) {
       setSelectedFactura(factura);
 
       const res = await axios.get(
-        `http://localhost:4000/api/facturas/${factura.id}`,
+        `${API_URL}/api/facturas/${factura.id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

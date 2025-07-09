@@ -9,12 +9,14 @@ export default function Productos({ esAdmin, token, usuario, onAgregarCarrito })
   const [showCrearModal, setShowCrearModal] = useState(false);
   const [showEditarModal, setShowEditarModal] = useState(false);
   const [productoActual, setProductoActual] = useState(null);
+// 🔥 Importa la URL base del backend desde el .env
+const API_URL = import.meta.env.VITE_API_URL;
 
   // 🔥 Cargar productos desde el backend
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/productos");
+        const res = await axios.get(`${API_URL}/api/productos`);
         setProductos(res.data.productos); // Ajusta según la respuesta de tu API
       } catch (error) {
         console.error("Error al obtener productos:", error);
@@ -31,7 +33,7 @@ export default function Productos({ esAdmin, token, usuario, onAgregarCarrito })
     if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
 
     try {
-      await axios.delete(`http://localhost:4000/api/productos/${id}`, {
+      await axios.delete(`${API_URL}/api/productos/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
 
       });
