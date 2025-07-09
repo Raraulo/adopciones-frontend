@@ -4,9 +4,7 @@ export default function Home({ onChangeView }) {
   return (
     <div className="text-gray-800 overflow-x-hidden">
       {/* 🟡 Hero grande */}
-      <section
-        className="bg-yellow-500 flex flex-col md:flex-row items-center justify-center w-full min-h-screen pt-20"
-      >
+      <section className="bg-yellow-500 flex flex-col md:flex-row items-center justify-center w-full min-h-screen pt-20">
         {/* Texto lado izquierdo */}
         <div className="w-full md:w-1/2 px-6 md:px-10 mb-8 md:mb-0 text-center md:text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
@@ -17,12 +15,11 @@ export default function Home({ onChangeView }) {
           </p>
         </div>
 
-        {/* Imagen lado derecho */}
-        <div className="w-full md:w-1/2 flex justify-center px-6 md:px-10">
+        {/* Imagen lado derecho con fondo transparente */}
+        <div className="w-full md:w-1/2 flex justify-center items-center h-full px-6 md:px-10">
           <img
-            src="/src/assets/img/perro.png"
-            alt="Perro feliz"
-            className="w-full max-w-lg md:max-w-xl lg:max-w-2xl object-cover"
+            src="https://us.images.westend61.de/0001547990pw/adorable-perro-weimaraner-de-pura-raza-con-panuelo-amarillo-en-la-cabeza-sentado-sobre-fondo-amarillo-en-estudio-ADSF22941.jpg"
+            className="w-full max-w-xl object-contain"
           />
         </div>
       </section>
@@ -47,7 +44,6 @@ export default function Home({ onChangeView }) {
             Los animales rescatados o abandonados en <strong>“Patitas Felices”</strong> que logran ser recuperados y rehabilitados,
             pasan al Programa de Adopciones con el fin de ser reubicados con una familia responsable.
           </p>
-          
         </div>
       </section>
 
@@ -70,7 +66,6 @@ export default function Home({ onChangeView }) {
           <p className="text-base sm:text-lg md:text-xl text-gray-700">
             Descubre nuestra selección de productos para el cuidado, alimentación y entretenimiento de tu perro. Calidad garantizada para que tu mascota sea feliz y saludable.
           </p>
-          
         </div>
       </section>
 
@@ -108,12 +103,12 @@ export default function Home({ onChangeView }) {
                   purchase_units: [
                     {
                       amount: {
-                        value: "5.00", // 💵 Monto fijo de la donación
+                        value: "5.00",
                       },
                     },
                   ],
                 });
-              }} 
+              }}
               onApprove={(data, actions) => {
                 return actions.order.capture().then(function (details) {
                   alert(
