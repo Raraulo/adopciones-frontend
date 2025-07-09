@@ -10,7 +10,7 @@ export default function ModalSolicitudes({ token, onClose }) {
   // Cargar todas las solicitudes
   const fetchSolicitudes = async () => {
     try {
-      const res = await axios.get(`${API_URL}/api/solicitudes`, {
+      const res = await axios.get(`${API_URL}/solicitudes`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSolicitudes(res.data.solicitudes);
@@ -41,7 +41,7 @@ export default function ModalSolicitudes({ token, onClose }) {
 
     try {
       const res = await axios.patch(
-        `${API_URL}/api/solicitudes/${id}/aprobar`,
+        `${API_URL}/solicitudes/${id}/aprobar`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -68,7 +68,7 @@ export default function ModalSolicitudes({ token, onClose }) {
 
     try {
       const res = await axios.patch(
-        `${API_URL}/api/solicitudes/${id}/rechazar`,
+        `${API_URL}/solicitudes/${id}/rechazar`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

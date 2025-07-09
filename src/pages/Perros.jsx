@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CrearPerroModal from "../components/CrearPerroModal";
 import EditarPerroModal from "../components/EditarPerroModal";
+// 🔥 Importa la URL base del backend desde el .env
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Perros({ esAdmin, token, usuario }) {
   const [perros, setPerros] = useState([]);
@@ -26,7 +28,7 @@ export default function Perros({ esAdmin, token, usuario }) {
   useEffect(() => {
     const fetchPerros = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/perros");
+        const res = await axios.get(`${API_URL}/perros`);
         setPerros(res.data.perros);
       } catch (error) {
         console.error("Error al cargar perros:", error);
@@ -43,7 +45,7 @@ export default function Perros({ esAdmin, token, usuario }) {
     if (!confirm("¿Seguro que deseas eliminar este perro?")) return;
 
     try {
-      await axios.delete(`http://localhost:4000/api/perros/${id}`, {
+      await axios.delete(`${API_URL}/perros/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPerros(perros.filter((p) => p.id !== id));
@@ -99,7 +101,7 @@ export default function Perros({ esAdmin, token, usuario }) {
     try {
       setEnviando(true);
       await axios.post(
-        "http://localhost:4000/api/solicitudes",
+        `${API_URL}/solicitudes`,
         {
           perro_id: selectedPerro.id,
           mensaje,

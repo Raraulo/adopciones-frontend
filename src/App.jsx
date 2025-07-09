@@ -42,7 +42,7 @@ function App() {
 
     const fetchNotificaciones = async () => {
       try {
-        const res = await axios.get(`${API_URL}/api/notificaciones`, {
+        const res = await axios.get(`${API_URL}/notificaciones`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setNotificaciones(res.data.notificaciones);
@@ -119,7 +119,7 @@ function App() {
     setConfirmAction(() => async () => {
       try {
         await axios.post(
-          `${API_URL}/api/compras`,
+          `${API_URL}/compras`,
           { productos: carrito },
           { headers: { Authorization: `Bearer ${token}` } }
         );

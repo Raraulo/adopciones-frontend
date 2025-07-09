@@ -34,7 +34,7 @@ export default function CrearPerroModal({
       if (perroEditar) {
         // 🔄 Editar perro
         const res = await axios.put(
-          `${API_URL}/api/perros/${perroEditar.id}`,
+          `${API_URL}/perros/${perroEditar.id}`,
           nuevoPerro,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -44,7 +44,7 @@ export default function CrearPerroModal({
         setExito(true);
       } else {
         // 🆕 Crear perro
-        const res = await axios.post(`${API_URL}/api/perros`, nuevoPerro, {
+        const res = await axios.post(`${API_URL}/perros`, nuevoPerro, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (onPerroCreado) {

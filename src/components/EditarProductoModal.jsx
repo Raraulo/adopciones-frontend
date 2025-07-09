@@ -39,7 +39,7 @@ export default function EditarProductoModal({ token, producto, onClose, onProduc
     setLoading(true);
     try {
       const res = await axios.put(
-        `${API_URL}/api/productos/${producto.id}`,
+        `${API_URL}/productos/${producto.id}`,
         form,
         {
           headers: { Authorization: `Bearer ${token}` },

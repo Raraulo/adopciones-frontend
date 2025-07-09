@@ -12,7 +12,7 @@ export default function LoginModal({ onClose, onLoginSuccess, onShowRegister }) 
     e.preventDefault();
     try {
       // ✅ Usa variable de entorno
-      const res = await axios.post(`${API_URL}/api/users/login`, {
+      const res = await axios.post(`${API_URL}/users/login`, {
         correo,
         password,
       });

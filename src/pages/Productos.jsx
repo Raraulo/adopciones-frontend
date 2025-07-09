@@ -16,7 +16,7 @@ const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const res = await axios.get(`${API_URL}/api/productos`);
+        const res = await axios.get(`${API_URL}/productos`);
         setProductos(res.data.productos); // Ajusta según la respuesta de tu API
       } catch (error) {
         console.error("Error al obtener productos:", error);
@@ -33,7 +33,7 @@ const API_URL = import.meta.env.VITE_API_URL;
     if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
 
     try {
-      await axios.delete(`${API_URL}/api/productos/${id}`, {
+      await axios.delete(`${API_URL}/productos/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
 
       });

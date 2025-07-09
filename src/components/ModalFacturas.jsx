@@ -5,14 +5,15 @@ export default function ModalFacturas({ token, onClose }) {
   const [facturas, setFacturas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [detalleFactura, setDetalleFactura] = useState(null);
-// 🔥 Importa la URL base del backend desde el .env
-const API_URL = import.meta.env.VITE_API_URL;
+
+  // ✅ URL base del backend
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Cargar todas las facturas (solo admin)
   useEffect(() => {
     const fetchFacturas = async () => {
       try {
-        const res = await axios.get(`${API_URL}/api/facturas`, {
+        const res = await axios.get(`${API_URL}/facturas`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setFacturas(res.data.facturas);
@@ -27,10 +28,10 @@ const API_URL = import.meta.env.VITE_API_URL;
     fetchFacturas();
   }, [token]);
 
-  // Ver detalle de factura
+  // ✅ Ver detalle de factura usando API_URL
   const verDetalle = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:4000/api/facturas/${id}`, {
+      const res = await axios.get(`${API_URL}/facturas/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setDetalleFactura(res.data.factura);

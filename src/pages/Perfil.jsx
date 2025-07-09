@@ -44,10 +44,10 @@ export default function Perfil({ esAdmin, usuario, token, onChangeView }) {
           setLoading(false); // Admin no necesita cargar adopciones/facturas
         } else {
           const [resAdopciones, resFacturas] = await Promise.all([
-            axios.get(`${API_URL}/api/solicitudes/mis-solicitudes`, {
+            axios.get(`${API_URL}/solicitudes/mis-solicitudes`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
-            axios.get(`${API_URL}/api/facturas/mis-facturas`, {
+            axios.get(`${API_URL}/facturas/mis-facturas`, {
               headers: { Authorization: `Bearer ${token}` },
             }),
           ]);
@@ -68,7 +68,7 @@ export default function Perfil({ esAdmin, usuario, token, onChangeView }) {
   const guardarCambiosUsuario = async () => {
     try {
       await axios.put(
-        `${API_URL}/api/users/${usuario.id}`,
+        `${API_URL}/users/${usuario.id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -86,7 +86,7 @@ export default function Perfil({ esAdmin, usuario, token, onChangeView }) {
       setSelectedFactura(factura);
 
       const res = await axios.get(
-        `${API_URL}/api/facturas/${factura.id}`,
+        `${API_URL}/facturas/${factura.id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

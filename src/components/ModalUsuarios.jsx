@@ -21,7 +21,7 @@ const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchUsuarios = async () => {
       try {
-        const res = await axios.get(`${API_URL}/api/users`, {
+        const res = await axios.get(`${API_URL}/users`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsuarios(res.data.usuarios);
@@ -41,7 +41,7 @@ const API_URL = import.meta.env.VITE_API_URL;
     if (!confirm("¿Seguro que deseas eliminar este usuario?")) return;
 
     try {
-      await axios.delete(`${API_URL}/api/users/${id}`, {
+      await axios.delete(`${API_URL}/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsuarios(usuarios.filter((u) => u.id !== id));
@@ -56,7 +56,7 @@ const API_URL = import.meta.env.VITE_API_URL;
   const guardarCambios = async () => {
     try {
       await axios.put(
-        `${API_URL}/api/users/${editUser.id}`,
+        `${API_URL}/users/${editUser.id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

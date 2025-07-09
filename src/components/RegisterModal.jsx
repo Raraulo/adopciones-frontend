@@ -27,7 +27,7 @@ export default function RegisterModal({ onClose, onRegisterSuccess }) {
 
     try {
       const res = await axios.post(
-        `${API_URL}/api/users/register`,
+        `${API_URL}/users/register`,
         form
       );
       alert("✅ Usuario creado exitosamente");

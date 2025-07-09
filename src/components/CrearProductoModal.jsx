@@ -31,7 +31,7 @@ export default function CrearProductoModal({ token, onClose, onProductoCreado })
     setLoading(true);
     try {
       const res = await axios.post(
-        `${API_URL}/api/productos`,
+        `${API_URL}/productos`,
         form,
         {
           headers: { Authorization: `Bearer ${token}` },

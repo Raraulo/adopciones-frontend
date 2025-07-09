@@ -38,7 +38,7 @@ export default function EditarPerroModal({ token, perro, onClose, onPerroActuali
       setLoading(true);
 
       const res = await axios.put(
-        `${API_URL}/api/perros/${perro.id}`,
+        `${API_URL}/perros/${perro.id}`,
         datosActualizados,
         { headers: { Authorization: `Bearer ${token}` } }
       );
